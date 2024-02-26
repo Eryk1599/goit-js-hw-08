@@ -9,8 +9,8 @@ const messageInput = form.querySelector("textarea[name='message']");
 try {
   const toStringMessage = throttle(() => {
     const messageObject = {
-      email: email.value.trim(),
-      message: message.value.trim(),
+      email: emailInput.value.trim(),
+      message: messageInput.value.trim(),
     };
     localStorage.setItem(localStorageKey, JSON.stringify(messageObject));
   }, 500);
@@ -24,8 +24,8 @@ function storedMessage() {
   if (data) {
     try {
       const parsed = JSON.parse(data);
-      email.value = parsed.email;
-      message.value = parsed.message;
+      emailInput.value = parsed.email;
+      messageInput.value = parsed.message;
     } catch (error) {
       console.log('error with parse');
     }
@@ -37,8 +37,8 @@ storedMessage();
 form.addEventListener('submit', evt => {
   evt.preventDefault();
   console.log({
-    email: email.value,
-    message: message.value,
+    email: emailInput.value,
+    message: messageInput.value,
   });
   localStorage.removeItem(localStorageKey);
   form.reset();
